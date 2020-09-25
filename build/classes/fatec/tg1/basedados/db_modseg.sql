@@ -1,0 +1,1 @@
+insert into tb_usuario (usuario,senha) values ('Rauni','123456');

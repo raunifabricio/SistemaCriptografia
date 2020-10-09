@@ -5,6 +5,10 @@
  */
 package fatec.tg1.view;
 
+import fatec.tg1.control.Conexao;
+import fatec.tg1.control.DaoUsuario;
+import fatec.tg1.model.Usuario;
+
 /**
  *
  * @author MR.ROBOTNEO
@@ -36,6 +40,14 @@ public class GuiLogin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jLblLogin.setText("Login:");
 
@@ -123,14 +135,25 @@ public class GuiLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_jPwdSenhaActionPerformed
 
     private void jBtnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEntrarActionPerformed
-        GuiMenu telaMenu = new GuiMenu();
-        telaMenu.setVisible(true);
+       
     }//GEN-LAST:event_jBtnEntrarActionPerformed
 
     private void jBtnCadUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCadUserActionPerformed
         GuiCadastroUsuario telaCadastro = new GuiCadastroUsuario();
         telaCadastro.setVisible(true);
     }//GEN-LAST:event_jBtnCadUserActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        conexao = new Conexao("postgres", "#RauFer31");
+        conexao.setConnectionString("jdbc:postgresql://localhost:5432/db_modseg");
+        conexao.setDriver("org.postgresql.Driver");
+        daoUsuario = new DaoUsuario(conexao.conectar());
+    }//GEN-LAST:event_formWindowOpened
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        conexao.fecharConexao();
+        dispose();
+    }//GEN-LAST:event_formWindowClosed
 
     /**
      * @param args the command line arguments
@@ -175,4 +198,7 @@ public class GuiLogin extends javax.swing.JFrame {
     private javax.swing.JPasswordField jPwdSenha;
     private javax.swing.JTextField jTxlfLogin;
     // End of variables declaration//GEN-END:variables
+Usuario usuario = null;
+DaoUsuario daoUsuario = null;
+Conexao conexao = null;
 }

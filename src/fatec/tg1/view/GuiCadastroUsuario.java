@@ -6,13 +6,8 @@
 package fatec.tg1.view;
 
 import fatec.tg1.control.Conexao;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
+import fatec.tg1.control.DaoUsuario;
+import fatec.tg1.model.Usuario;
 /**
  *
  * @author aluno
@@ -51,6 +46,9 @@ public class GuiCadastroUsuario extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cadastrar Usuario");
         addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
@@ -89,6 +87,11 @@ public class GuiCadastroUsuario extends javax.swing.JFrame {
 
         jBtnPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fatec/tg1/view/icon/buscar arquivo.png"))); // NOI18N
         jBtnPesquisar.setText("Pesquisar");
+        jBtnPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnPesquisarActionPerformed(evt);
+            }
+        });
 
         jLblConfirmarSenha.setText("Confirmar Senha:");
 
@@ -172,30 +175,62 @@ public class GuiCadastroUsuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        
+        conexao = new Conexao("postgres", "#RauFer31");
+        conexao.setConnectionString("jdbc:postgresql://localhost:5432/db_modseg");
+        conexao.setDriver("org.postgresql.Driver");
+        daoUsuario = new DaoUsuario(conexao.conectar());
     }//GEN-LAST:event_formWindowOpened
 
     private void jBtnConfCadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfCadActionPerformed
-        try {
-            Connection conexao = new Conexao().getConnection();
-            
-            String sql = "insert into tb_usuario(nome,senha) values ('Rauni','123456')";
-            
-            PreparedStatement prepareStatement = conexao.prepareStatement(sql);
-            prepareStatement.execute();
-            
-            conexao.close();
-            
-                    
-                    
-        } catch (SQLException ex) {
-            Logger.getLogger(GuiCadastroUsuario.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        dispose();
     }//GEN-LAST:event_jBtnConfCadActionPerformed
 
     private void jBtnInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnInserirActionPerformed
-        // TODO add your handling code here:
+       
+        
+    }                                          
+
+    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {                                           
+        
+                                             
+}
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {                                           
+       
+
     }//GEN-LAST:event_jBtnInserirActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        conexao.fecharConexao();
+        dispose();
+    }//GEN-LAST:event_formWindowClosed
+
+    private void jBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPesquisarActionPerformed
+        usuario = null;
+        usuario = daoUsuario.consultar(jTfxNome.getText());
+        
+         if (usuario == null) {
+            jTfxNome.setEnabled(true);
+            jTfxEmail.setEnabled(true);
+            jTfxSenha.setEnabled(false);
+            jTfxConfirmarSenha.setEnabled(false);
+            jBtnPesquisar.setEnabled(false);
+            jBtnInserir.setEnabled(true);
+            jTfxNome.requestFocus();
+        } else {
+            jTfxNome.setEnabled(false);
+            jTfxEmail.setEnabled(true);
+            jTfxSenha.setEnabled(true);
+            jTfxConfirmarSenha.setEnabled(true);
+            jBtnPesquisar.setEnabled(false);
+            jTfxNome.setText(usuario.getNome());
+            jTfxEmail.setText(usuario.getEmail());
+            //btnAlterar.setEnabled(true);
+            jBtnExcluir.setEnabled(true);
+            jBtnPesquisar.setEnabled(false);
+            jTfxNome.requestFocus();
+     }
+        
+    }//GEN-LAST:event_jBtnPesquisarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -226,7 +261,7 @@ public class GuiCadastroUsuario extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-         java.awt.EventQueue.invokeLater(new Runnable() {
+            java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new GuiCadastroUsuario().setVisible(true);
             }
@@ -248,4 +283,9 @@ public class GuiCadastroUsuario extends javax.swing.JFrame {
     private javax.swing.JTextField jTfxNome;
     private javax.swing.JPasswordField jTfxSenha;
     // End of variables declaration//GEN-END:variables
+Usuario usuario = null;
+DaoUsuario daoUsuario = null;
+Conexao conexao = null;
+
+
 }

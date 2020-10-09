@@ -12,6 +12,11 @@ public class Usuario {
     private String senha;
     private Perfil perfil;
 
+    public Usuario(String email, String senha) {
+        this.email = email;
+        this.senha = senha;
+    }
+
     public Long getId() {
         return id;
     }

@@ -6,7 +6,7 @@ package fatec.tg1.model;
  */
 public class Usuario {
     
-    private Long id;
+    private int id;
     private String nome;
     private String email;
     private String senha;
@@ -17,11 +17,11 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

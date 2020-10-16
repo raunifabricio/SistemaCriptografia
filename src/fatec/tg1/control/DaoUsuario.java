@@ -4,6 +4,9 @@ import fatec.tg1.model.Usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -78,7 +81,33 @@ public class DaoUsuario {
         }
         return u;
     }
+    
+    public boolean checkLogin(String email, String senha) {
 
-    
-    
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        boolean check = false;
+
+        try {
+
+            ps = conn.prepareStatement("SELECT * FROM tb_usuario WHERE email = ? and senha = ?");
+            ps.setString(1, email);
+            ps.setString(2, senha);
+
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+
+                
+                check = true;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return check;
+
+    }   
 }

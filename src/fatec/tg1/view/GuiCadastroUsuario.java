@@ -36,12 +36,12 @@ public class GuiCadastroUsuario extends javax.swing.JFrame {
         jTfxNome = new javax.swing.JTextField();
         jTfxEmail = new javax.swing.JTextField();
         jTfxSenha = new javax.swing.JPasswordField();
-        jBtnConfCad = new javax.swing.JButton();
         jBtnExcluir = new javax.swing.JButton();
         jBtnInserir = new javax.swing.JButton();
         jBtnPesquisar = new javax.swing.JButton();
         jLblConfirmarSenha = new javax.swing.JLabel();
         jTfxConfirmarSenha = new javax.swing.JPasswordField();
+        jBtnAlterar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cadastrar Usuario");
@@ -67,14 +67,6 @@ public class GuiCadastroUsuario extends javax.swing.JFrame {
         jTfxSenha.setText("jPasswordField1");
         jTfxSenha.setEnabled(false);
 
-        jBtnConfCad.setText("Confirmar Cadastro");
-        jBtnConfCad.setEnabled(false);
-        jBtnConfCad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtnConfCadActionPerformed(evt);
-            }
-        });
-
         jBtnExcluir.setText("Excluir");
         jBtnExcluir.setEnabled(false);
 
@@ -98,6 +90,8 @@ public class GuiCadastroUsuario extends javax.swing.JFrame {
         jTfxConfirmarSenha.setText("jPasswordField1");
         jTfxConfirmarSenha.setEnabled(false);
 
+        jBtnAlterar.setText("Alterar");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -107,36 +101,32 @@ public class GuiCadastroUsuario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLblNome)
-                                    .addComponent(jLblEmail))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTfxEmail)
-                                    .addComponent(jTfxNome)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLblConfirmarSenha)
-                                    .addComponent(jLblSenha))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTfxSenha)
-                                    .addComponent(jTfxConfirmarSenha)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(145, 145, 145)
-                                .addComponent(jBtnPesquisar)
-                                .addGap(18, 18, 18)
-                                .addComponent(jBtnInserir)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
-                                .addComponent(jBtnExcluir)))
-                        .addGap(108, 108, 108))
+                            .addComponent(jLblNome)
+                            .addComponent(jLblEmail))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTfxEmail)
+                            .addComponent(jTfxNome)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jBtnConfCad)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLblConfirmarSenha)
+                            .addComponent(jLblSenha))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTfxSenha)
+                            .addComponent(jTfxConfirmarSenha)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jBtnPesquisar)
+                        .addGap(32, 32, 32)
+                        .addComponent(jBtnInserir)
+                        .addGap(28, 28, 28)
+                        .addComponent(jBtnAlterar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                        .addComponent(jBtnExcluir)))
+                .addGap(43, 43, 43))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jBtnConfCad, jBtnExcluir, jBtnInserir, jBtnPesquisar});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jBtnAlterar, jBtnExcluir, jBtnInserir, jBtnPesquisar});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -161,15 +151,14 @@ public class GuiCadastroUsuario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBtnPesquisar)
                     .addComponent(jBtnInserir)
-                    .addComponent(jBtnExcluir))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
-                .addComponent(jBtnConfCad)
-                .addGap(22, 22, 22))
+                    .addComponent(jBtnExcluir)
+                    .addComponent(jBtnAlterar))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jTfxEmail, jTfxNome, jTfxSenha});
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jBtnConfCad, jBtnExcluir, jBtnInserir, jBtnPesquisar});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jBtnAlterar, jBtnExcluir, jBtnInserir, jBtnPesquisar});
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -180,10 +169,6 @@ public class GuiCadastroUsuario extends javax.swing.JFrame {
         conexao.setDriver("org.postgresql.Driver");
         daoUsuario = new DaoUsuario(conexao.conectar());
     }//GEN-LAST:event_formWindowOpened
-
-    private void jBtnConfCadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfCadActionPerformed
-        dispose();
-    }//GEN-LAST:event_jBtnConfCadActionPerformed
 
     private void jBtnInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnInserirActionPerformed
        
@@ -270,7 +255,7 @@ public class GuiCadastroUsuario extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBtnConfCad;
+    private javax.swing.JButton jBtnAlterar;
     private javax.swing.JButton jBtnExcluir;
     private javax.swing.JButton jBtnInserir;
     private javax.swing.JButton jBtnPesquisar;

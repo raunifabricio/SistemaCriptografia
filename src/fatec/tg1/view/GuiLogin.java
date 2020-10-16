@@ -161,12 +161,12 @@ public class GuiLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_jBtnCadUserActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        /*conexao = new Conexao("postgres", "#RauFer31");
+        conexao = new Conexao("postgres", "#RauFer31");
         conexao.setConnectionString("jdbc:postgresql://localhost:5432/db_modseg");
-        conexao.setDriver("org.postgresql.Driver");*/
-        conexao = new Conexao("root", "@#28n95BYY");
+        conexao.setDriver("org.postgresql.Driver");
+        /*conexao = new Conexao("root", "@#28n95BYY");
         conexao.setConnectionString("jdbc:mysql://localhost:3306/db_modseg?useTimezone=true&serverTimezone=UTC");
-        conexao.setDriver("com.mysql.cj.jdbc.Driver");
+        conexao.setDriver("com.mysql.cj.jdbc.Driver");*/
         daoUsuario = new DaoUsuario(conexao.conectar());
     }//GEN-LAST:event_formWindowOpened
 

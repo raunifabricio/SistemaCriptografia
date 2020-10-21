@@ -5,6 +5,9 @@
  */
 package fatec.tg1.view;
 
+import java.text.DateFormat;
+import java.util.Date;
+
 /**
  *
  * @author MR.ROBOTNEO
@@ -27,6 +30,11 @@ public class GuiMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        desktop = new javax.swing.JDesktopPane();
+        lblData = new javax.swing.JLabel();
+        lblUsuario = new javax.swing.JLabel();
+        lblPerfil = new javax.swing.JLabel();
+        lblUsuario1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuArquivo = new javax.swing.JMenu();
         jCbxEncriptarArq = new javax.swing.JCheckBoxMenuItem();
@@ -36,13 +44,43 @@ public class GuiMenu extends javax.swing.JFrame {
         jMenuDescripPart = new javax.swing.JCheckBoxMenuItem();
         jMenuTexto = new javax.swing.JMenu();
         jMenuEncripDecsripTxt = new javax.swing.JCheckBoxMenuItem();
-        jMenuBackup = new javax.swing.JMenu();
+        menuBackup = new javax.swing.JMenu();
         jMenuGerarBackup = new javax.swing.JCheckBoxMenuItem();
         jMenuRestBD = new javax.swing.JCheckBoxMenuItem();
         jMenuSair = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
+
+        desktop.setPreferredSize(new java.awt.Dimension(640, 480));
+
+        javax.swing.GroupLayout desktopLayout = new javax.swing.GroupLayout(desktop);
+        desktop.setLayout(desktopLayout);
+        desktopLayout.setHorizontalGroup(
+            desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 641, Short.MAX_VALUE)
+        );
+        desktopLayout.setVerticalGroup(
+            desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 461, Short.MAX_VALUE)
+        );
+
+        lblData.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblData.setText("Data");
+
+        lblUsuario.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblUsuario.setText("Usuário");
+
+        lblPerfil.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblPerfil.setText("Administrador");
+
+        lblUsuario1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblUsuario1.setText("Usuário:");
 
         jMenuArquivo.setText("Arquivo");
 
@@ -101,7 +139,7 @@ public class GuiMenu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenuTexto);
 
-        jMenuBackup.setText("Backup");
+        menuBackup.setText("Backup");
 
         jMenuGerarBackup.setSelected(true);
         jMenuGerarBackup.setText("Gerar Backup");
@@ -110,7 +148,7 @@ public class GuiMenu extends javax.swing.JFrame {
                 jMenuGerarBackupActionPerformed(evt);
             }
         });
-        jMenuBackup.add(jMenuGerarBackup);
+        menuBackup.add(jMenuGerarBackup);
 
         jMenuRestBD.setSelected(true);
         jMenuRestBD.setText("Restaurar Base de Dados");
@@ -119,9 +157,9 @@ public class GuiMenu extends javax.swing.JFrame {
                 jMenuRestBDActionPerformed(evt);
             }
         });
-        jMenuBackup.add(jMenuRestBD);
+        menuBackup.add(jMenuRestBD);
 
-        jMenuBar1.add(jMenuBackup);
+        jMenuBar1.add(menuBackup);
 
         jMenuSair.setText("Sair");
         jMenuSair.addActionListener(new java.awt.event.ActionListener() {
@@ -137,11 +175,38 @@ public class GuiMenu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 712, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(desktop, javax.swing.GroupLayout.PREFERRED_SIZE, 641, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblData)
+                            .addComponent(lblPerfil))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblUsuario1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblUsuario)))
+                .addGap(81, 81, 81))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 370, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(desktop, javax.swing.GroupLayout.DEFAULT_SIZE, 461, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(53, 53, 53)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblUsuario)
+                    .addComponent(lblUsuario1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblPerfil)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblData)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -179,6 +244,14 @@ public class GuiMenu extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jMenuSairActionPerformed
 
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        // ao ativar a janela, mude e atualize a data:
+        Date data = new Date();
+        // formatando a data
+        DateFormat formatador = DateFormat.getDateInstance(DateFormat.SHORT);
+        lblData.setText(formatador.format(data));
+    }//GEN-LAST:event_formWindowActivated
+
     /**
      * @param args the command line arguments
      */
@@ -215,10 +288,10 @@ public class GuiMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDesktopPane desktop;
     private javax.swing.JCheckBoxMenuItem jCbxDescripArq;
     private javax.swing.JCheckBoxMenuItem jCbxEncriptarArq;
     private javax.swing.JMenu jMenuArquivo;
-    private javax.swing.JMenu jMenuBackup;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JCheckBoxMenuItem jMenuDescripPart;
     private javax.swing.JCheckBoxMenuItem jMenuEncripDecsripTxt;
@@ -228,5 +301,10 @@ public class GuiMenu extends javax.swing.JFrame {
     private javax.swing.JCheckBoxMenuItem jMenuRestBD;
     private javax.swing.JMenu jMenuSair;
     private javax.swing.JMenu jMenuTexto;
+    private javax.swing.JLabel lblData;
+    public static javax.swing.JLabel lblPerfil;
+    public static javax.swing.JLabel lblUsuario;
+    public static javax.swing.JLabel lblUsuario1;
+    public static javax.swing.JMenu menuBackup;
     // End of variables declaration//GEN-END:variables
 }

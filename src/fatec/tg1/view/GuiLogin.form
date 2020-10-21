@@ -34,6 +34,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jLblLogin" min="-2" max="-2" attributes="0"/>
                   <Component id="jLblSenha" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblStatusConexao" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" max="-2" attributes="0">
@@ -42,8 +43,8 @@
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="jBtnCadUser" linkSize="1" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jTxlfLogin" min="-2" pref="222" max="-2" attributes="0"/>
-                  <Component id="jPwdSenha" min="-2" pref="222" max="-2" attributes="0"/>
+                  <Component id="txtLogin" min="-2" pref="222" max="-2" attributes="0"/>
+                  <Component id="txtSenha" min="-2" pref="222" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="52" max="32767" attributes="0"/>
           </Group>
@@ -55,17 +56,20 @@
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLblLogin" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTxlfLogin" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtLogin" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLblSenha" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPwdSenha" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtSenha" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jBtnCadUser" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jBtnEntrar" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jBtnCadUser" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jBtnEntrar" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="lblStatusConexao" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="29" max="32767" attributes="0"/>
           </Group>
@@ -83,14 +87,14 @@
         <Property name="text" type="java.lang.String" value="Senha:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTxlfLogin">
+    <Component class="javax.swing.JTextField" name="txtLogin">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTxlfLoginActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtLoginActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JPasswordField" name="jPwdSenha">
+    <Component class="javax.swing.JPasswordField" name="txtSenha">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jPwdSenhaActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtSenhaActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jBtnEntrar">
@@ -108,6 +112,13 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtnCadUserActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblStatusConexao">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/fatec/tg1/view/icon/dberror.png"/>
+        </Property>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

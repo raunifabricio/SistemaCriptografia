@@ -82,7 +82,7 @@ public class DaoUsuario {
         return u;
     }
     
-    public boolean checkLogin(String email, String senha) {
+    /*public boolean checkLogin(String email, String senha) {
 
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -109,5 +109,5 @@ public class DaoUsuario {
 
         return check;
 
-    }   
+    }*/ 
 }

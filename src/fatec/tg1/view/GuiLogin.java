@@ -9,6 +9,10 @@ import fatec.tg1.control.Conexao;
 import fatec.tg1.control.DaoUsuario;
 import fatec.tg1.control.ModuloConexao;
 import fatec.tg1.model.Usuario;
+import java.awt.Color;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,20 +20,71 @@ import javax.swing.JOptionPane;
  * @author MR.ROBOTNEO
  */
 public class GuiLogin extends javax.swing.JFrame {
+    
+    //  usando a variavel conexao do DAL
+    Connection conexao = null;
+    // criando variáveis especiais para conexão com o banco
+    //Prepared Statement e ResultSet são frameworks do pacote java.sql
+    // e servem para preparar e executar as instruções SQL
+    PreparedStatement pst = null;
+    ResultSet rs = null;
+    
+    //criando o metodo logar
+    public void logar() {
 
+        //logica principal para pesquisar no banco de dados
+        String sql = "SELECT * FROM tb_usuario WHERE email = ? and senha = ?";
+        try {
+//as linhas abaixo preparam a consulta em função do que foi 
+//digitado nas caixas de texto. O ? é substituído pelo conteúdo
+//das variáveis que são armazenadas em pst.setString
+            pst = conexao.prepareStatement(sql);
+            pst.setString(1, txtLogin.getText());
+            pst.setString(2, txtSenha.getText());
+            //a linha abaixo executa a query(consulta)
+            rs = pst.executeQuery();
+            //se existir um usuário e senha correspondente
+            if (rs.next()) {
+                //a linha abaixo obtem o conteúdo do campo perfil da tabela tbusuario
+                String perfil = rs.getString(5);
+                //System.out.println(perfil);
+                //a estrutura abaixo faz o tratamento do perfil do usuário
+                if (perfil.equals("admin")) {
+                    GuiMenu principal = new GuiMenu();
+                    principal.setVisible(true);
+                    GuiMenu.lblUsuario.setText(rs.getString(2));
+                    GuiMenu.lblPerfil.setForeground(Color.red);
+                    this.dispose();
+                }else{
+                    GuiMenu principal = new GuiMenu();
+                    principal.setVisible(true);
+                    GuiMenu.menuBackup.setEnabled(false);
+                    GuiMenu.lblUsuario.setText(rs.getString(2));
+                    GuiMenu.lblPerfil.setVisible(false);
+                    this.dispose();
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "usuário e/ou senha inválido(s)");
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
     /**
      * Creates new form GuiLogin
      */
     public GuiLogin() {
         initComponents();
         // Status da conexão BD
-        /*conexao = (Conexao) ModuloConexao.conector();
+        //conexao = (Conexao) ModuloConexao.conector();
+        conexao = ModuloConexao.conector();
         // a estrutura abaixo muda o ícone de acordo com o status da conexao
         if (conexao != null) {
             lblStatusConexao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fatec/tg1/view/icon/dbok.png")));
         } else {
             lblStatusConexao.setIcon(new javax.swing.ImageIcon(getClass().getResource("//fatec/tg1/view/icon/dberror.png")));
-        }*/
+        }
     }
 
     /**
@@ -43,10 +98,11 @@ public class GuiLogin extends javax.swing.JFrame {
 
         jLblLogin = new javax.swing.JLabel();
         jLblSenha = new javax.swing.JLabel();
-        jTxlfLogin = new javax.swing.JTextField();
-        jPwdSenha = new javax.swing.JPasswordField();
+        txtLogin = new javax.swing.JTextField();
+        txtSenha = new javax.swing.JPasswordField();
         jBtnEntrar = new javax.swing.JButton();
         jBtnCadUser = new javax.swing.JButton();
+        lblStatusConexao = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Criptografia - Login");
@@ -64,15 +120,15 @@ public class GuiLogin extends javax.swing.JFrame {
 
         jLblSenha.setText("Senha:");
 
-        jTxlfLogin.addActionListener(new java.awt.event.ActionListener() {
+        txtLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTxlfLoginActionPerformed(evt);
+                txtLoginActionPerformed(evt);
             }
         });
 
-        jPwdSenha.addActionListener(new java.awt.event.ActionListener() {
+        txtSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPwdSenhaActionPerformed(evt);
+                txtSenhaActionPerformed(evt);
             }
         });
 
@@ -90,6 +146,8 @@ public class GuiLogin extends javax.swing.JFrame {
             }
         });
 
+        lblStatusConexao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fatec/tg1/view/icon/dberror.png"))); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -98,15 +156,16 @@ public class GuiLogin extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLblLogin)
-                    .addComponent(jLblSenha))
+                    .addComponent(jLblSenha)
+                    .addComponent(lblStatusConexao))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jBtnEntrar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jBtnCadUser))
-                    .addComponent(jTxlfLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPwdSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(52, Short.MAX_VALUE))
         );
 
@@ -118,15 +177,17 @@ public class GuiLogin extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLblLogin)
-                    .addComponent(jTxlfLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLblSenha)
-                    .addComponent(jPwdSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBtnCadUser)
-                    .addComponent(jBtnEntrar))
+                    .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jBtnCadUser)
+                        .addComponent(jBtnEntrar))
+                    .addComponent(lblStatusConexao))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
 
@@ -136,23 +197,26 @@ public class GuiLogin extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTxlfLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxlfLoginActionPerformed
+    private void txtLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLoginActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTxlfLoginActionPerformed
+    }//GEN-LAST:event_txtLoginActionPerformed
 
-    private void jPwdSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPwdSenhaActionPerformed
+    private void txtSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSenhaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jPwdSenhaActionPerformed
+    }//GEN-LAST:event_txtSenhaActionPerformed
 
     private void jBtnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEntrarActionPerformed
+        
+        logar();
+        
         //daoUsuario = new DaoUsuario(conexao.conectar());
        
-        if(daoUsuario.checkLogin(jTxlfLogin.getText(), String.valueOf(jPwdSenha.getPassword()) )){
+        /*if(daoUsuario.checkLogin(jTxlfLogin.getText(), String.valueOf(jPwdSenha.getPassword()) )){
             new GuiMenu().setVisible(true);
             this.dispose();
         }else{
             JOptionPane.showMessageDialog(null, "Email e ou Senha incorreta!");
-        }
+        }*/
     }//GEN-LAST:event_jBtnEntrarActionPerformed
 
     private void jBtnCadUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCadUserActionPerformed
@@ -161,17 +225,17 @@ public class GuiLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_jBtnCadUserActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        conexao = new Conexao("postgres", "#RauFer31");
+        /*conexao = new Conexao("postgres", "#RauFer31");
         conexao.setConnectionString("jdbc:postgresql://localhost:5432/db_modseg");
-        conexao.setDriver("org.postgresql.Driver");
+        conexao.setDriver("org.postgresql.Driver");*/
         /*conexao = new Conexao("root", "@#28n95BYY");
         conexao.setConnectionString("jdbc:mysql://localhost:3306/db_modseg?useTimezone=true&serverTimezone=UTC");
-        conexao.setDriver("com.mysql.cj.jdbc.Driver");*/
-        daoUsuario = new DaoUsuario(conexao.conectar());
+        conexao.setDriver("com.mysql.cj.jdbc.Driver");
+        daoUsuario = new DaoUsuario(conexao.conectar());*/
     }//GEN-LAST:event_formWindowOpened
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        conexao.fecharConexao();
+        //conexao.fecharConexao();
         dispose();
     }//GEN-LAST:event_formWindowClosed
 
@@ -215,10 +279,11 @@ public class GuiLogin extends javax.swing.JFrame {
     private javax.swing.JButton jBtnEntrar;
     private javax.swing.JLabel jLblLogin;
     private javax.swing.JLabel jLblSenha;
-    private javax.swing.JPasswordField jPwdSenha;
-    private javax.swing.JTextField jTxlfLogin;
+    private javax.swing.JLabel lblStatusConexao;
+    private javax.swing.JTextField txtLogin;
+    private javax.swing.JPasswordField txtSenha;
     // End of variables declaration//GEN-END:variables
 Usuario usuario = null;
 DaoUsuario daoUsuario = null;
-Conexao conexao = null;
+//Conexao conexao = null;
 }

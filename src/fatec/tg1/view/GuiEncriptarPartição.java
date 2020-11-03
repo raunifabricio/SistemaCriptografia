@@ -5,7 +5,12 @@
  */
 package fatec.tg1.view;
 
+import fatec.tg1.model.Arquivo;
 import java.io.File;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 
 /**
@@ -38,13 +43,15 @@ public class GuiEncriptarPartição extends javax.swing.JFrame {
         jTxfSenhaEncripArq = new javax.swing.JTextField();
         jBtnEncriptarArq = new javax.swing.JButton();
         jLblSha512 = new javax.swing.JLabel();
-        jTfdSha512 = new javax.swing.JTextField();
         jBtnCopiarSha512 = new javax.swing.JButton();
         jBtnCopiarTudo = new javax.swing.JButton();
         jLblHash = new javax.swing.JLabel();
-        jTfdHash = new javax.swing.JTextField();
         jBtnColar = new javax.swing.JButton();
         jBtnVerificarHash = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTfdSha512 = new javax.swing.JTextArea();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTfdHash = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Encriptar partição");
@@ -67,14 +74,22 @@ public class GuiEncriptarPartição extends javax.swing.JFrame {
 
         jBtnEncriptarArq.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fatec/tg1/view/icon/criptografar.png"))); // NOI18N
         jBtnEncriptarArq.setText("Encriptar");
+        jBtnEncriptarArq.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnEncriptarArqActionPerformed(evt);
+            }
+        });
 
         jLblSha512.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLblSha512.setText("Sha512:");
 
-        jTfdSha512.setEnabled(false);
-
         jBtnCopiarSha512.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fatec/tg1/view/icon/copia-de.png"))); // NOI18N
         jBtnCopiarSha512.setText("Copiar Sha512");
+        jBtnCopiarSha512.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnCopiarSha512ActionPerformed(evt);
+            }
+        });
 
         jBtnCopiarTudo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fatec/tg1/view/icon/copiar td.png"))); // NOI18N
         jBtnCopiarTudo.setText("Copiar Tudo");
@@ -82,120 +97,125 @@ public class GuiEncriptarPartição extends javax.swing.JFrame {
         jLblHash.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLblHash.setText("Hash:");
 
-        jTfdHash.setEnabled(false);
-
         jBtnColar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fatec/tg1/view/icon/colar.png"))); // NOI18N
         jBtnColar.setText("Colar");
+        jBtnColar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnColarActionPerformed(evt);
+            }
+        });
 
         jBtnVerificarHash.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fatec/tg1/view/icon/senha.png"))); // NOI18N
         jBtnVerificarHash.setText("Verificar Hash");
+
+        jTfdSha512.setColumns(20);
+        jTfdSha512.setLineWrap(true);
+        jTfdSha512.setRows(5);
+        jScrollPane1.setViewportView(jTfdSha512);
+
+        jTfdHash.setEditable(false);
+        jTfdHash.setColumns(20);
+        jTfdHash.setLineWrap(true);
+        jTfdHash.setRows(5);
+        jTfdHash.setBorder(null);
+        jTfdHash.setOpaque(false);
+        jScrollPane2.setViewportView(jTfdHash);
 
         javax.swing.GroupLayout jPLEncripPartLayout = new javax.swing.GroupLayout(jPLEncripPart);
         jPLEncripPart.setLayout(jPLEncripPartLayout);
         jPLEncripPartLayout.setHorizontalGroup(
             jPLEncripPartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPLEncripPartLayout.createSequentialGroup()
-                .addGroup(jPLEncripPartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap()
+                .addGroup(jPLEncripPartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPLEncripPartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jBtnVerificarHash)
+                        .addGroup(jPLEncripPartLayout.createSequentialGroup()
+                            .addGroup(jPLEncripPartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLblSha512)
+                                .addComponent(jLblHash, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addGap(18, 18, 18)
+                            .addGroup(jPLEncripPartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPLEncripPartLayout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(jPLEncripPartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPLEncripPartLayout.createSequentialGroup()
-                                .addGroup(jPLEncripPartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPLEncripPartLayout.createSequentialGroup()
-                                        .addComponent(jLblHash)
-                                        .addGap(26, 26, 26)
-                                        .addComponent(jTfdHash, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jBtnVerificarHash))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jBtnColar)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(jPLEncripPartLayout.createSequentialGroup()
-                                .addGroup(jPLEncripPartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLblSha512)
-                                    .addComponent(jLblSenhaEncripArq, javax.swing.GroupLayout.Alignment.TRAILING))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTfdSha512)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPLEncripPartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jBtnCopiarSha512, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jBtnCopiarTudo)))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPLEncripPartLayout.createSequentialGroup()
-                        .addComponent(jLblPartição)
+                            .addComponent(jLblPartição)
+                            .addComponent(jLblSenhaEncripArq, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPLEncripPartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPLEncripPartLayout.createSequentialGroup()
-                                .addComponent(jTxfSenhaEncripArq, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(209, 209, 209)
-                                .addComponent(jBtnEncriptarArq, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPLEncripPartLayout.createSequentialGroup()
-                                .addComponent(jTfdDirectory, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jBtnBuscarPartição, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(29, 29, 29))
+                            .addComponent(jTxfSenhaEncripArq, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTfdDirectory))))
+                .addGap(25, 25, 25)
+                .addGroup(jPLEncripPartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jBtnCopiarSha512, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBtnCopiarTudo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBtnColar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBtnEncriptarArq, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBtnBuscarPartição, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 46, Short.MAX_VALUE))
         );
 
         jPLEncripPartLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jBtnColar, jBtnCopiarSha512, jBtnCopiarTudo});
 
-        jPLEncripPartLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jTfdHash, jTfdSha512});
+        jPLEncripPartLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jScrollPane1, jScrollPane2});
 
         jPLEncripPartLayout.setVerticalGroup(
             jPLEncripPartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPLEncripPartLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(23, 23, 23)
                 .addGroup(jPLEncripPartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBtnBuscarPartição)
                     .addComponent(jTfdDirectory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLblPartição))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                    .addComponent(jLblPartição)
+                    .addComponent(jBtnBuscarPartição))
+                .addGap(9, 9, 9)
+                .addGroup(jPLEncripPartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTxfSenhaEncripArq, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLblSenhaEncripArq)
+                    .addComponent(jBtnEncriptarArq))
+                .addGap(16, 16, 16)
                 .addGroup(jPLEncripPartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPLEncripPartLayout.createSequentialGroup()
-                        .addGap(7, 7, 7)
-                        .addGroup(jPLEncripPartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTxfSenhaEncripArq, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLblSenhaEncripArq)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                        .addComponent(jBtnVerificarHash)
+                        .addContainerGap())
                     .addGroup(jPLEncripPartLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBtnEncriptarArq)))
-                .addGap(20, 20, 20)
-                .addGroup(jPLEncripPartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jBtnCopiarSha512)
-                    .addComponent(jLblSha512)
-                    .addGroup(jPLEncripPartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTfdSha512, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jBtnCopiarTudo)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPLEncripPartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPLEncripPartLayout.createSequentialGroup()
-                        .addGroup(jPLEncripPartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLblHash)
-                            .addComponent(jTfdHash, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPLEncripPartLayout.createSequentialGroup()
-                        .addComponent(jBtnColar)
-                        .addGap(3, 3, 3)))
-                .addComponent(jBtnVerificarHash)
-                .addGap(6, 6, 6))
+                        .addGroup(jPLEncripPartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPLEncripPartLayout.createSequentialGroup()
+                                .addGap(72, 72, 72)
+                                .addComponent(jLblSha512))
+                            .addGroup(jPLEncripPartLayout.createSequentialGroup()
+                                .addComponent(jBtnCopiarSha512)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jBtnCopiarTudo)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPLEncripPartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPLEncripPartLayout.createSequentialGroup()
+                                .addComponent(jBtnColar)
+                                .addGap(69, 69, 69))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPLEncripPartLayout.createSequentialGroup()
+                                .addComponent(jLblHash)
+                                .addGap(166, 166, 166))))))
         );
 
         jPLEncripPartLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jBtnBuscarPartição, jBtnEncriptarArq});
 
         jPLEncripPartLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jBtnColar, jBtnCopiarSha512, jBtnCopiarTudo});
 
-        jPLEncripPartLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jTfdHash, jTfdSha512});
+        jPLEncripPartLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jScrollPane1, jScrollPane2});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPLEncripPart, javax.swing.GroupLayout.PREFERRED_SIZE, 735, Short.MAX_VALUE)
-                .addGap(1, 1, 1))
+            .addComponent(jPLEncripPart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPLEncripPart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 10, Short.MAX_VALUE))
+            .addComponent(jPLEncripPart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -209,6 +229,32 @@ public class GuiEncriptarPartição extends javax.swing.JFrame {
         //String filename=f.get();
         jTfdDirectory.setText(filename);
     }//GEN-LAST:event_jBtnBuscarPartiçãoActionPerformed
+
+    private void jBtnEncriptarArqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEncriptarArqActionPerformed
+        String senhAdmin = null;
+        arquivo = new Arquivo(jTxfSenhaEncripArq.getText());
+        try {
+            senhAdmin = arquivo.Encriptar();
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(GuiEncriptarArquivo.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(GuiEncriptarArquivo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        jTfdSha512.setText(senhAdmin);
+    }//GEN-LAST:event_jBtnEncriptarArqActionPerformed
+
+    private void jBtnCopiarSha512ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCopiarSha512ActionPerformed
+        String text = jTfdSha512.getText();
+        StringBuilder builder = new StringBuilder(text);
+        builder.replace(jTfdSha512.getSelectionStart(), jTfdSha512.getSelectionEnd(),"");
+    }//GEN-LAST:event_jBtnCopiarSha512ActionPerformed
+
+    private void jBtnColarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnColarActionPerformed
+        String text = jTfdSha512.getText();
+        StringBuilder builder = new StringBuilder(text);
+        builder.replace(jTfdSha512.getSelectionStart(), jTfdSha512.getSelectionEnd(),"");
+        jTfdHash.setText(text);
+    }//GEN-LAST:event_jBtnColarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -257,9 +303,12 @@ public class GuiEncriptarPartição extends javax.swing.JFrame {
     private javax.swing.JLabel jLblSenhaEncripArq;
     private javax.swing.JLabel jLblSha512;
     private javax.swing.JPanel jPLEncripPart;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTfdDirectory;
-    private javax.swing.JTextField jTfdHash;
-    private javax.swing.JTextField jTfdSha512;
+    private javax.swing.JTextArea jTfdHash;
+    private javax.swing.JTextArea jTfdSha512;
     private javax.swing.JTextField jTxfSenhaEncripArq;
     // End of variables declaration//GEN-END:variables
+Arquivo arquivo = null;
 }

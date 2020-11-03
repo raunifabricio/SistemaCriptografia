@@ -5,6 +5,12 @@
  */
 package fatec.tg1.view;
 
+import fatec.tg1.model.Arquivo;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author MR.ROBOTNEO
@@ -28,10 +34,12 @@ public class GuiEncripDescripTxt extends javax.swing.JFrame {
     private void initComponents() {
 
         jPnlEncDescTxt = new javax.swing.JPanel();
-        jTxfEncripTxt = new javax.swing.JTextField();
         jBtnEncrpTxt = new javax.swing.JButton();
-        jTxfDescripTxt = new javax.swing.JTextField();
         jBtnDescripTxt = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTxfEncripTxt = new javax.swing.JTextArea();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTxfDescripTxt = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Encriptar e Descriptar Texto");
@@ -41,47 +49,71 @@ public class GuiEncripDescripTxt extends javax.swing.JFrame {
 
         jBtnEncrpTxt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fatec/tg1/view/icon/criptografar.png"))); // NOI18N
         jBtnEncrpTxt.setText("Encriptar");
+        jBtnEncrpTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnEncrpTxtActionPerformed(evt);
+            }
+        });
 
         jBtnDescripTxt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fatec/tg1/view/icon/descriptografar.png"))); // NOI18N
         jBtnDescripTxt.setText("Descriptar");
+
+        jTxfEncripTxt.setColumns(20);
+        jTxfEncripTxt.setLineWrap(true);
+        jTxfEncripTxt.setRows(5);
+        jScrollPane1.setViewportView(jTxfEncripTxt);
+
+        jTxfDescripTxt.setColumns(20);
+        jTxfDescripTxt.setLineWrap(true);
+        jTxfDescripTxt.setRows(5);
+        jScrollPane2.setViewportView(jTxfDescripTxt);
 
         javax.swing.GroupLayout jPnlEncDescTxtLayout = new javax.swing.GroupLayout(jPnlEncDescTxt);
         jPnlEncDescTxt.setLayout(jPnlEncDescTxtLayout);
         jPnlEncDescTxtLayout.setHorizontalGroup(
             jPnlEncDescTxtLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPnlEncDescTxtLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPnlEncDescTxtLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPnlEncDescTxtLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jTxfDescripTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 783, Short.MAX_VALUE)
-                        .addComponent(jTxfEncripTxt)
-                        .addComponent(jBtnEncrpTxt, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 807, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBtnEncrpTxt)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBtnDescripTxt))
-                .addContainerGap())
+                .addGap(0, 0, Short.MAX_VALUE))
         );
+
+        jPnlEncDescTxtLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jScrollPane1, jScrollPane2});
+
         jPnlEncDescTxtLayout.setVerticalGroup(
             jPnlEncDescTxtLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPnlEncDescTxtLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTxfEncripTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBtnEncrpTxt)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jTxfDescripTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jBtnDescripTxt)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jPnlEncDescTxtLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jScrollPane1, jScrollPane2});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPnlEncDescTxt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPnlEncDescTxt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPnlEncDescTxt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 674, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPnlEncDescTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPnlEncDescTxt.getAccessibleContext().setAccessibleName("");
@@ -90,6 +122,19 @@ public class GuiEncripDescripTxt extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jBtnEncrpTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEncrpTxtActionPerformed
+        String senhAdmin = null;
+        arquivo = new Arquivo(jTxfEncripTxt.getText());
+        try {
+            senhAdmin = arquivo.Encriptar();
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(GuiEncriptarArquivo.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(GuiEncriptarArquivo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        jTxfEncripTxt.setText(senhAdmin);
+    }//GEN-LAST:event_jBtnEncrpTxtActionPerformed
 
     /**
      * @param args the command line arguments
@@ -131,7 +176,10 @@ public class GuiEncripDescripTxt extends javax.swing.JFrame {
     private javax.swing.JButton jBtnDescripTxt;
     private javax.swing.JButton jBtnEncrpTxt;
     private javax.swing.JPanel jPnlEncDescTxt;
-    private javax.swing.JTextField jTxfDescripTxt;
-    private javax.swing.JTextField jTxfEncripTxt;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea jTxfDescripTxt;
+    private javax.swing.JTextArea jTxfEncripTxt;
     // End of variables declaration//GEN-END:variables
+Arquivo arquivo = null;
 }

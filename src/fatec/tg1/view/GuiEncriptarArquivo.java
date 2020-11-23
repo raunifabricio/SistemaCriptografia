@@ -12,6 +12,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -146,21 +147,20 @@ public class GuiEncriptarArquivo extends javax.swing.JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(18, 18, 18)
                         .addGroup(jPLGerarHashLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTxfSenhaEncripArq, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jBtnVerificarHash, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(jScrollPane2)
+                            .addGroup(jPLGerarHashLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPLGerarHashLayout.createSequentialGroup()
+                                    .addComponent(jTxfSenhaEncripArq, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(220, 220, 220))
+                                .addComponent(jBtnVerificarHash, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jScrollPane1)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPLGerarHashLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPLGerarHashLayout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jBtnColar))
-                            .addGroup(jPLGerarHashLayout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addGroup(jPLGerarHashLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jBtnCopiarSha512)
-                                    .addComponent(jBtnEncriptarArq)
-                                    .addComponent(jBtnCopiarTudo))))
-                        .addGap(156, 156, 156))
+                            .addComponent(jBtnCopiarSha512)
+                            .addComponent(jBtnEncriptarArq)
+                            .addComponent(jBtnCopiarTudo)
+                            .addComponent(jBtnColar))
+                        .addGap(157, 157, 157))
                     .addGroup(jPLGerarHashLayout.createSequentialGroup()
                         .addComponent(jLblArquivo, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -173,8 +173,6 @@ public class GuiEncriptarArquivo extends javax.swing.JFrame {
         jPLGerarHashLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLblArquivo, jLblSha512});
 
         jPLGerarHashLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jBtnBuscar, jBtnColar, jBtnCopiarSha512, jBtnCopiarTudo, jBtnEncriptarArq});
-
-        jPLGerarHashLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jScrollPane1, jScrollPane2});
 
         jPLGerarHashLayout.setVerticalGroup(
             jPLGerarHashLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,24 +193,25 @@ public class GuiEncriptarArquivo extends javax.swing.JFrame {
                         .addComponent(jLblSha512))
                     .addGroup(jPLGerarHashLayout.createSequentialGroup()
                         .addGap(21, 21, 21)
-                        .addGroup(jPLGerarHashLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPLGerarHashLayout.createSequentialGroup()
-                                .addComponent(jBtnCopiarSha512)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jBtnCopiarTudo))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
+                        .addComponent(jBtnCopiarSha512)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBtnCopiarTudo))
+                    .addGroup(jPLGerarHashLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(8, 8, 8)
                 .addGroup(jPLGerarHashLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPLGerarHashLayout.createSequentialGroup()
+                        .addGap(88, 88, 88)
+                        .addComponent(jLblHash))
+                    .addGroup(jPLGerarHashLayout.createSequentialGroup()
+                        .addGap(19, 19, 19)
                         .addGroup(jPLGerarHashLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jBtnColar))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPLGerarHashLayout.createSequentialGroup()
-                        .addComponent(jLblHash)
-                        .addGap(93, 93, 93)))
-                .addComponent(jBtnVerificarHash)
-                .addContainerGap(26, Short.MAX_VALUE))
+                            .addComponent(jBtnColar)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jBtnVerificarHash)))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         jPLGerarHashLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLblArquivo, jLblSha512});
@@ -233,7 +232,7 @@ public class GuiEncriptarArquivo extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPLGerarHash, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 8, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         getAccessibleContext().setAccessibleName("Gerar Hash");
@@ -253,6 +252,10 @@ public class GuiEncriptarArquivo extends javax.swing.JFrame {
         }
         jTfdSha512.setText(senhAdmin);
     }//GEN-LAST:event_jBtnEncriptarArqActionPerformed
+
+    private void jBtnVerificarHashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnVerificarHashActionPerformed
+       
+    }//GEN-LAST:event_jBtnVerificarHashActionPerformed
 
     private void jBtnColarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnColarActionPerformed
         String text = jTfdSha512.getText();
@@ -278,10 +281,6 @@ public class GuiEncriptarArquivo extends javax.swing.JFrame {
             jTfdFile.setText(arquivo.getPath());
         }
     }//GEN-LAST:event_jBtnBuscarActionPerformed
-
-    private void jBtnVerificarHashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnVerificarHashActionPerformed
-
-    }//GEN-LAST:event_jBtnVerificarHashActionPerformed
 
     /**
      * @param args the command line arguments

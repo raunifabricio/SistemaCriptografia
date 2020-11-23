@@ -37,7 +37,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Component id="jPLGerarHash" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="8" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -78,26 +78,24 @@
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jTxfSenhaEncripArq" alignment="0" min="-2" pref="270" max="-2" attributes="0"/>
-                              <Component id="jScrollPane2" linkSize="7" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="jScrollPane1" linkSize="7" min="-2" pref="490" max="-2" attributes="0"/>
-                              <Component id="jBtnVerificarHash" alignment="1" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                                  <Component id="jBtnColar" linkSize="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jBtnCopiarSha512" linkSize="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jBtnEncriptarArq" linkSize="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jBtnCopiarTudo" linkSize="3" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jScrollPane2" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jTxfSenhaEncripArq" min="-2" pref="270" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="220" max="-2" attributes="0"/>
                                   </Group>
+                                  <Component id="jBtnVerificarHash" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace min="-2" pref="156" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jBtnCopiarSha512" linkSize="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jBtnEncriptarArq" linkSize="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jBtnCopiarTudo" linkSize="3" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jBtnColar" linkSize="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="157" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="jLblArquivo" linkSize="1" min="-2" pref="48" max="-2" attributes="0"/>
@@ -133,32 +131,32 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="jBtnCopiarSha512" linkSize="4" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jBtnCopiarTudo" linkSize="4" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="jScrollPane1" linkSize="8" min="-2" pref="163" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="jBtnCopiarSha512" linkSize="4" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jBtnCopiarTudo" linkSize="4" min="-2" max="-2" attributes="0"/>
                       </Group>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="jScrollPane2" linkSize="8" min="-2" max="-2" attributes="0"/>
-                              <Component id="jBtnColar" linkSize="4" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                      <Group type="102" alignment="0" attributes="0">
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="jLblHash" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
+                          <Component id="jScrollPane1" linkSize="10" min="-2" pref="162" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Component id="jBtnVerificarHash" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="26" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
+                          <Component id="jLblHash" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="jBtnColar" linkSize="4" min="-2" max="-2" attributes="0"/>
+                              <Component id="jScrollPane2" linkSize="10" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="jBtnVerificarHash" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace pref="23" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

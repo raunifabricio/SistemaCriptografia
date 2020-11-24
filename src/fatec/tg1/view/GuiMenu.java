@@ -7,6 +7,7 @@ package fatec.tg1.view;
 
 import java.text.DateFormat;
 import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -47,10 +48,12 @@ public class GuiMenu extends javax.swing.JFrame {
         menuBackup = new javax.swing.JMenu();
         jMenuGerarBackup = new javax.swing.JCheckBoxMenuItem();
         jMenuRestBD = new javax.swing.JCheckBoxMenuItem();
-        jMenuSair = new javax.swing.JMenu();
+        jMenuOpc = new javax.swing.JMenu();
+        jMenuSair = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu");
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
@@ -63,11 +66,11 @@ public class GuiMenu extends javax.swing.JFrame {
         desktop.setLayout(desktopLayout);
         desktopLayout.setHorizontalGroup(
             desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 641, Short.MAX_VALUE)
+            .addGap(0, 780, Short.MAX_VALUE)
         );
         desktopLayout.setVerticalGroup(
             desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 461, Short.MAX_VALUE)
+            .addGap(0, 550, Short.MAX_VALUE)
         );
 
         lblData.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -161,13 +164,23 @@ public class GuiMenu extends javax.swing.JFrame {
 
         jMenuBar1.add(menuBackup);
 
+        jMenuOpc.setText("Opções");
+        jMenuOpc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuOpcActionPerformed(evt);
+            }
+        });
+
+        jMenuSair.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
         jMenuSair.setText("Sair");
         jMenuSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuSairActionPerformed(evt);
             }
         });
-        jMenuBar1.add(jMenuSair);
+        jMenuOpc.add(jMenuSair);
+
+        jMenuBar1.add(jMenuOpc);
 
         setJMenuBar(jMenuBar1);
 
@@ -177,72 +190,92 @@ public class GuiMenu extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(desktop, javax.swing.GroupLayout.PREFERRED_SIZE, 641, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(desktop, javax.swing.GroupLayout.PREFERRED_SIZE, 780, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblData)
-                            .addComponent(lblPerfil))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblData)
+                    .addComponent(lblPerfil)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblUsuario1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblUsuario)))
-                .addGap(81, 81, 81))
+                .addGap(63, 63, 63))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(desktop, javax.swing.GroupLayout.DEFAULT_SIZE, 461, Short.MAX_VALUE)
-                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(53, 53, 53)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblUsuario)
-                    .addComponent(lblUsuario1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblPerfil)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblData)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblUsuario)
+                            .addComponent(lblUsuario1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblPerfil)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblData))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(desktop, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        pack();
+        setSize(new java.awt.Dimension(1058, 649));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jCbxEncriptarArqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCbxEncriptarArqActionPerformed
-        new GuiEncriptarArquivo().setVisible(true);
+        //new GuiEncriptarArquivo().setVisible(true);
+        GuiEncriptarArquivo1 guiEncriptarArquivo = new GuiEncriptarArquivo1();
+        guiEncriptarArquivo.setVisible(true);
+        desktop.add(guiEncriptarArquivo);
     }//GEN-LAST:event_jCbxEncriptarArqActionPerformed
 
     private void jCbxDescripArqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCbxDescripArqActionPerformed
-        new GuiDescriptarArquivo().setVisible(true);
+        //new GuiDescriptarArquivo().setVisible(true);
+        GuiDescriptografarArquivo guiDescriptografarArquivo = new GuiDescriptografarArquivo();
+        guiDescriptografarArquivo.setVisible(true);
+        desktop.add(guiDescriptografarArquivo);
     }//GEN-LAST:event_jCbxDescripArqActionPerformed
 
     private void jMenuEncriptPartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuEncriptPartActionPerformed
-        new GuiEncriptarPartição().setVisible(true);
+        //new GuiEncriptarPartição().setVisible(true);
+        GuiEncriptarParticao guiEncriptarParticao = new GuiEncriptarParticao();
+        guiEncriptarParticao.setVisible(true);
+        desktop.add(guiEncriptarParticao);
     }//GEN-LAST:event_jMenuEncriptPartActionPerformed
 
     private void jMenuDescripPartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuDescripPartActionPerformed
-        new GuiDescriptarPartição().setVisible(true);
+        //new GuiDescriptarPartição().setVisible(true);
+        GuiDescriptografarParticao guiDescriptografarParticao = new GuiDescriptografarParticao();
+        guiDescriptografarParticao.setVisible(true);
+        desktop.add(guiDescriptografarParticao);
     }//GEN-LAST:event_jMenuDescripPartActionPerformed
 
     private void jMenuEncripDecsripTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuEncripDecsripTxtActionPerformed
-        new GuiEncripDescripTxt().setVisible(true);
+        //new GuiEncripDescripTxt().setVisible(true);
+        GuiEncripDescripTxt1 guiEncripDescripTxt = new GuiEncripDescripTxt1();
+        guiEncripDescripTxt.setVisible(true);
+        desktop.add(guiEncripDescripTxt);
     }//GEN-LAST:event_jMenuEncripDecsripTxtActionPerformed
 
     private void jMenuGerarBackupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuGerarBackupActionPerformed
-        new GuiGerarBackup().setVisible(true);
+        //new GuiGerarBackup().setVisible(true);
+        GuiGerarBackup1 guiGerarBackup = new GuiGerarBackup1();
+        guiGerarBackup.setVisible(true);
+        desktop.add(guiGerarBackup);
     }//GEN-LAST:event_jMenuGerarBackupActionPerformed
 
     private void jMenuRestBDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuRestBDActionPerformed
-        new GuiRestaurarBD(). setVisible(true);
+        //new GuiRestaurarBD(). setVisible(true);
+        GuiRestaurarBD1 guiRestaurarBD = new GuiRestaurarBD1();
+        guiRestaurarBD.setVisible(true);
+        desktop.add(guiRestaurarBD);
     }//GEN-LAST:event_jMenuRestBDActionPerformed
 
-    private void jMenuSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuSairActionPerformed
+    private void jMenuOpcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuOpcActionPerformed
         dispose();
-    }//GEN-LAST:event_jMenuSairActionPerformed
+    }//GEN-LAST:event_jMenuOpcActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // ao ativar a janela, mude e atualize a data:
@@ -251,6 +284,13 @@ public class GuiMenu extends javax.swing.JFrame {
         DateFormat formatador = DateFormat.getDateInstance(DateFormat.SHORT);
         lblData.setText(formatador.format(data));
     }//GEN-LAST:event_formWindowActivated
+
+    private void jMenuSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuSairActionPerformed
+        int sair = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja sair?", "Atenção", JOptionPane.YES_NO_OPTION);
+        if (sair == JOptionPane.YES_OPTION) {
+            System.exit(0);
+        }
+    }//GEN-LAST:event_jMenuSairActionPerformed
 
     /**
      * @param args the command line arguments
@@ -297,9 +337,10 @@ public class GuiMenu extends javax.swing.JFrame {
     private javax.swing.JCheckBoxMenuItem jMenuEncripDecsripTxt;
     private javax.swing.JCheckBoxMenuItem jMenuEncriptPart;
     private javax.swing.JCheckBoxMenuItem jMenuGerarBackup;
+    private javax.swing.JMenu jMenuOpc;
     private javax.swing.JMenu jMenuPartição;
     private javax.swing.JCheckBoxMenuItem jMenuRestBD;
-    private javax.swing.JMenu jMenuSair;
+    private javax.swing.JMenuItem jMenuSair;
     private javax.swing.JMenu jMenuTexto;
     private javax.swing.JLabel lblData;
     public static javax.swing.JLabel lblPerfil;

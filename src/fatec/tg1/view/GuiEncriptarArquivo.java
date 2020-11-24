@@ -125,6 +125,7 @@ public class GuiEncriptarArquivo extends javax.swing.JFrame {
         jTfdHash.setLineWrap(true);
         jTfdHash.setRows(5);
         jTfdHash.setBorder(null);
+        jTfdHash.setEnabled(false);
         jTfdHash.setOpaque(false);
         jScrollPane2.setViewportView(jTfdHash);
 
@@ -254,7 +255,15 @@ public class GuiEncriptarArquivo extends javax.swing.JFrame {
     }//GEN-LAST:event_jBtnEncriptarArqActionPerformed
 
     private void jBtnVerificarHashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnVerificarHashActionPerformed
-       
+        String hash = jTfdHash.getText();
+        arquivo = new Arquivo(jTfdSha512.getText());
+        arquivo.setSenhahexAdmin(jTfdSha512.getText());
+        
+        if(arquivo.CompararHashes(hash)){
+            JOptionPane.showMessageDialog(this, "Hashes Iguais!!!");
+        }else {
+            JOptionPane.showMessageDialog(this, "Hashes diferentes!!! \nFavor verificar hash");
+        }
     }//GEN-LAST:event_jBtnVerificarHashActionPerformed
 
     private void jBtnColarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnColarActionPerformed
@@ -274,7 +283,7 @@ public class GuiEncriptarArquivo extends javax.swing.JFrame {
         JFileChooser file = new JFileChooser();
         file.setFileSelectionMode(JFileChooser.FILES_ONLY);
         int i = file.showSaveDialog(null);
-        if(i==i){
+        if(i==1){
             jTfdFile.setText("");
         }else {
             File arquivo = file.getSelectedFile();

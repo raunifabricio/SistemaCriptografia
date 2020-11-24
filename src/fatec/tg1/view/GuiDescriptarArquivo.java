@@ -215,7 +215,7 @@ public class GuiDescriptarArquivo extends javax.swing.JFrame {
         JFileChooser file = new JFileChooser();
         file.setFileSelectionMode(JFileChooser.FILES_ONLY);
         int i = file.showSaveDialog(null);
-        if(i==i){
+        if(i==1){
             jTfdFile.setText("");
         }else {
             File arquivo = file.getSelectedFile();

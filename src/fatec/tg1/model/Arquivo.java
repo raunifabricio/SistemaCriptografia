@@ -10,6 +10,7 @@ import java.security.NoSuchAlgorithmException;
  */
 public class Arquivo {
     private String senhaAdmin;
+    private String senhahexAdmin;
 
     public Arquivo(String senhaAdmin) {
         this.senhaAdmin = senhaAdmin;
@@ -22,6 +23,14 @@ public class Arquivo {
     public void setSenhaAdmin(String senhaAdmin) {
         this.senhaAdmin = senhaAdmin;
     }
+
+    public String getSenhahexAdmin() {
+        return senhahexAdmin;
+    }
+
+    public void setSenhahexAdmin(String senhahexAdmin) {
+        this.senhahexAdmin = senhahexAdmin;
+    }
     
     public String Encriptar() throws NoSuchAlgorithmException,
   UnsupportedEncodingException {
@@ -33,14 +42,14 @@ public class Arquivo {
      for (byte b : messageDigestSenhaAdmin) {
               hexStringSenhaAdmin.append(String.format("%02X", 0xFF & b));
      }
-     String senhahexAdmin = hexStringSenhaAdmin.toString();
+     
+        String senhahexAdmin = hexStringSenhaAdmin.toString();
 
         return senhahexAdmin;
     }
     
-    public boolean CompararHashes(String senhahexAdmin){
-        if(senhahexAdmin.equals(senhahexAdmin));
-        return true;
+    public boolean CompararHashes(String hash){
+       return senhahexAdmin.equals(hash);
     }
     
 }

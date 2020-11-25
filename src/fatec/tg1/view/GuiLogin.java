@@ -9,6 +9,7 @@ import fatec.tg1.control.Conexao;
 import fatec.tg1.control.DaoUsuario;
 import fatec.tg1.control.ModuloConexao;
 import fatec.tg1.model.Usuario;
+import fatec.tg1.model.Utilitarios;
 import java.awt.Color;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -77,6 +78,9 @@ public class GuiLogin extends javax.swing.JFrame {
      */
     public GuiLogin() {
         initComponents();
+        
+        Utilitarios u = new Utilitarios();
+        u.InserirIcone(this);
         // Status da conexão BD
         //conexao = (Conexao) ModuloConexao.conector();
         conexao = ModuloConexao.conector();

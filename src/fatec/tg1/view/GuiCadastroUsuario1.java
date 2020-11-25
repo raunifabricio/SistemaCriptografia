@@ -89,7 +89,7 @@ public class GuiCadastroUsuario1 extends javax.swing.JInternalFrame {
                 }
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, "E-Mail já cadastrado!", "Atenção", JOptionPane.WARNING_MESSAGE); // Aqui é certeza que o email já existe!
         }
     }
     

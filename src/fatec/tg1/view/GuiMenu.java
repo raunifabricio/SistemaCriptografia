@@ -37,6 +37,8 @@ public class GuiMenu extends javax.swing.JFrame {
         lblPerfil = new javax.swing.JLabel();
         lblUsuario1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
+        menuCad = new javax.swing.JMenu();
+        menuCadUser = new javax.swing.JMenuItem();
         jMenuArquivo = new javax.swing.JMenu();
         jCbxEncriptarArq = new javax.swing.JCheckBoxMenuItem();
         jCbxDescripArq = new javax.swing.JCheckBoxMenuItem();
@@ -84,6 +86,18 @@ public class GuiMenu extends javax.swing.JFrame {
 
         lblUsuario1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblUsuario1.setText("Usuário:");
+
+        menuCad.setText("Cadastro");
+
+        menuCadUser.setText("Usuário");
+        menuCadUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuCadUserActionPerformed(evt);
+            }
+        });
+        menuCad.add(menuCadUser);
+
+        jMenuBar1.add(menuCad);
 
         jMenuArquivo.setText("Arquivo");
 
@@ -292,6 +306,12 @@ public class GuiMenu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuSairActionPerformed
 
+    private void menuCadUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadUserActionPerformed
+        GuiCadastroUsuario1 guiCadastroUsuario = new GuiCadastroUsuario1();
+        guiCadastroUsuario.setVisible(true);
+        desktop.add(guiCadastroUsuario);
+    }//GEN-LAST:event_menuCadUserActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -347,5 +367,7 @@ public class GuiMenu extends javax.swing.JFrame {
     public static javax.swing.JLabel lblUsuario;
     public static javax.swing.JLabel lblUsuario1;
     public static javax.swing.JMenu menuBackup;
+    public static javax.swing.JMenu menuCad;
+    private javax.swing.JMenuItem menuCadUser;
     // End of variables declaration//GEN-END:variables
 }

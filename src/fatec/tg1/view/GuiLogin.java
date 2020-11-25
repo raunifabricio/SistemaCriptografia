@@ -46,7 +46,7 @@ public class GuiLogin extends javax.swing.JFrame {
             //se existir um usuário e senha correspondente
             if (rs.next()) {
                 //a linha abaixo obtem o conteúdo do campo perfil da tabela tbusuario
-                String perfil = rs.getString(5);
+                String perfil = rs.getString(6);
                 //System.out.println(perfil);
                 //a estrutura abaixo faz o tratamento do perfil do usuário
                 if (perfil.equals("admin")) {
@@ -59,6 +59,7 @@ public class GuiLogin extends javax.swing.JFrame {
                     GuiMenu principal = new GuiMenu();
                     principal.setVisible(true);
                     GuiMenu.menuBackup.setEnabled(false);
+                    GuiMenu.menuCad.setEnabled(false);
                     GuiMenu.lblUsuario.setText(rs.getString(2));
                     GuiMenu.lblPerfil.setVisible(false);
                     this.dispose();
@@ -101,7 +102,6 @@ public class GuiLogin extends javax.swing.JFrame {
         txtLogin = new javax.swing.JTextField();
         txtSenha = new javax.swing.JPasswordField();
         jBtnEntrar = new javax.swing.JButton();
-        jBtnCadUser = new javax.swing.JButton();
         lblStatusConexao = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -139,13 +139,6 @@ public class GuiLogin extends javax.swing.JFrame {
             }
         });
 
-        jBtnCadUser.setText("Cadastrar");
-        jBtnCadUser.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtnCadUserActionPerformed(evt);
-            }
-        });
-
         lblStatusConexao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fatec/tg1/view/icon/dberror.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -159,18 +152,12 @@ public class GuiLogin extends javax.swing.JFrame {
                     .addComponent(jLblSenha)
                     .addComponent(lblStatusConexao))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jBtnEntrar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jBtnCadUser))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jBtnEntrar, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(52, Short.MAX_VALUE))
         );
-
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jBtnCadUser, jBtnEntrar});
-
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -184,14 +171,10 @@ public class GuiLogin extends javax.swing.JFrame {
                     .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jBtnCadUser)
-                        .addComponent(jBtnEntrar))
+                    .addComponent(jBtnEntrar)
                     .addComponent(lblStatusConexao))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
-
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jBtnCadUser, jBtnEntrar});
 
         pack();
         setLocationRelativeTo(null);
@@ -218,11 +201,6 @@ public class GuiLogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Email e ou Senha incorreta!");
         }*/
     }//GEN-LAST:event_jBtnEntrarActionPerformed
-
-    private void jBtnCadUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCadUserActionPerformed
-        GuiCadastroUsuario telaCadastro = new GuiCadastroUsuario();
-        telaCadastro.setVisible(true);
-    }//GEN-LAST:event_jBtnCadUserActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         /*conexao = new Conexao("postgres", "#RauFer31");
@@ -275,7 +253,6 @@ public class GuiLogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBtnCadUser;
     private javax.swing.JButton jBtnEntrar;
     private javax.swing.JLabel jLblLogin;
     private javax.swing.JLabel jLblSenha;

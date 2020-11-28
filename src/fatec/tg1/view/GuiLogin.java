@@ -107,6 +107,7 @@ public class GuiLogin extends javax.swing.JFrame {
         txtSenha = new javax.swing.JPasswordField();
         jBtnEntrar = new javax.swing.JButton();
         lblStatusConexao = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Criptografia - Login");
@@ -145,6 +146,8 @@ public class GuiLogin extends javax.swing.JFrame {
 
         lblStatusConexao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fatec/tg1/view/icon/dberror.png"))); // NOI18N
 
+        jLabel1.setText("Esqueceu a senha? Clique aqui");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -157,10 +160,13 @@ public class GuiLogin extends javax.swing.JFrame {
                     .addComponent(lblStatusConexao))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jBtnEntrar, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(52, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(jBtnEntrar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel1))
+                    .addComponent(txtSenha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtLogin, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -175,7 +181,9 @@ public class GuiLogin extends javax.swing.JFrame {
                     .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jBtnEntrar)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jBtnEntrar)
+                        .addComponent(jLabel1))
                     .addComponent(lblStatusConexao))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
@@ -258,6 +266,7 @@ public class GuiLogin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnEntrar;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLblLogin;
     private javax.swing.JLabel jLblSenha;
     private javax.swing.JLabel lblStatusConexao;

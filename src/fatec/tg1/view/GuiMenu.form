@@ -39,7 +39,7 @@
             <MenuItem class="javax.swing.JCheckBoxMenuItem" name="jCbxDescripArq">
               <Properties>
                 <Property name="selected" type="boolean" value="true"/>
-                <Property name="text" type="java.lang.String" value="Descriptar"/>
+                <Property name="text" type="java.lang.String" value="Descriptografar"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCbxDescripArqActionPerformed"/>
@@ -64,7 +64,7 @@
             <MenuItem class="javax.swing.JCheckBoxMenuItem" name="jMenuDescripPart">
               <Properties>
                 <Property name="selected" type="boolean" value="true"/>
-                <Property name="text" type="java.lang.String" value="Descriptar"/>
+                <Property name="text" type="java.lang.String" value="Descriptografar"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuDescripPartActionPerformed"/>
@@ -99,19 +99,10 @@
             <MenuItem class="javax.swing.JCheckBoxMenuItem" name="jMenuGerarBackup">
               <Properties>
                 <Property name="selected" type="boolean" value="true"/>
-                <Property name="text" type="java.lang.String" value="Gerar Backup"/>
+                <Property name="text" type="java.lang.String" value="Gerar e Restaurar Backup"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuGerarBackupActionPerformed"/>
-              </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JCheckBoxMenuItem" name="jMenuRestBD">
-              <Properties>
-                <Property name="selected" type="boolean" value="true"/>
-                <Property name="text" type="java.lang.String" value="Restaurar Base de Dados"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuRestBDActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>

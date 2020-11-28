@@ -53,7 +53,6 @@ public class GuiMenu extends javax.swing.JFrame {
         jMenuEncripDecsripTxt = new javax.swing.JCheckBoxMenuItem();
         menuBackup = new javax.swing.JMenu();
         jMenuGerarBackup = new javax.swing.JCheckBoxMenuItem();
-        jMenuRestBD = new javax.swing.JCheckBoxMenuItem();
         jMenuOpc = new javax.swing.JMenu();
         jMenuSair = new javax.swing.JMenuItem();
 
@@ -115,7 +114,7 @@ public class GuiMenu extends javax.swing.JFrame {
         jMenuArquivo.add(jCbxEncriptarArq);
 
         jCbxDescripArq.setSelected(true);
-        jCbxDescripArq.setText("Descriptar");
+        jCbxDescripArq.setText("Descriptografar");
         jCbxDescripArq.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCbxDescripArqActionPerformed(evt);
@@ -137,7 +136,7 @@ public class GuiMenu extends javax.swing.JFrame {
         jMenuPartição.add(jMenuEncriptPart);
 
         jMenuDescripPart.setSelected(true);
-        jMenuDescripPart.setText("Descriptar");
+        jMenuDescripPart.setText("Descriptografar");
         jMenuDescripPart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuDescripPartActionPerformed(evt);
@@ -163,22 +162,13 @@ public class GuiMenu extends javax.swing.JFrame {
         menuBackup.setText("Backup");
 
         jMenuGerarBackup.setSelected(true);
-        jMenuGerarBackup.setText("Gerar Backup");
+        jMenuGerarBackup.setText("Gerar e Restaurar Backup");
         jMenuGerarBackup.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuGerarBackupActionPerformed(evt);
             }
         });
         menuBackup.add(jMenuGerarBackup);
-
-        jMenuRestBD.setSelected(true);
-        jMenuRestBD.setText("Restaurar Base de Dados");
-        jMenuRestBD.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuRestBDActionPerformed(evt);
-            }
-        });
-        menuBackup.add(jMenuRestBD);
 
         jMenuBar1.add(menuBackup);
 
@@ -284,13 +274,6 @@ public class GuiMenu extends javax.swing.JFrame {
         desktop.add(guiGerarBackup);
     }//GEN-LAST:event_jMenuGerarBackupActionPerformed
 
-    private void jMenuRestBDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuRestBDActionPerformed
-        //new GuiRestaurarBD(). setVisible(true);
-        GuiRestaurarBD1 guiRestaurarBD = new GuiRestaurarBD1();
-        guiRestaurarBD.setVisible(true);
-        desktop.add(guiRestaurarBD);
-    }//GEN-LAST:event_jMenuRestBDActionPerformed
-
     private void jMenuOpcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuOpcActionPerformed
         dispose();
     }//GEN-LAST:event_jMenuOpcActionPerformed
@@ -363,7 +346,6 @@ public class GuiMenu extends javax.swing.JFrame {
     private javax.swing.JCheckBoxMenuItem jMenuGerarBackup;
     private javax.swing.JMenu jMenuOpc;
     private javax.swing.JMenu jMenuPartição;
-    private javax.swing.JCheckBoxMenuItem jMenuRestBD;
     private javax.swing.JMenuItem jMenuSair;
     private javax.swing.JMenu jMenuTexto;
     private javax.swing.JLabel lblData;

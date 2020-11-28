@@ -38,18 +38,34 @@ public class GuiRecuperarSenha extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Recuperar Senha");
 
         jLabel1.setText("Seu email:");
 
         btnOk.setText("OK");
+        btnOk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOkActionPerformed(evt);
+            }
+        });
 
-        jPanelAlteracaoSenha.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Encriptar Partição", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 13), new java.awt.Color(255, 51, 0))); // NOI18N
+        jPanelAlteracaoSenha.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nova Senha", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 13), new java.awt.Color(255, 51, 0))); // NOI18N
+        jPanelAlteracaoSenha.setEnabled(false);
 
         jLabel2.setText("Nova Senha");
 
         jLabel3.setText("Repita nova senha");
 
+        jTextField1.setEnabled(false);
+
+        jTextField2.setEnabled(false);
+
         jButton1.setText("Atualizar Senha");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelAlteracaoSenhaLayout = new javax.swing.GroupLayout(jPanelAlteracaoSenha);
         jPanelAlteracaoSenha.setLayout(jPanelAlteracaoSenhaLayout);
@@ -69,7 +85,7 @@ public class GuiRecuperarSenha extends javax.swing.JFrame {
             .addGroup(jPanelAlteracaoSenhaLayout.createSequentialGroup()
                 .addGap(107, 107, 107)
                 .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(121, Short.MAX_VALUE))
         );
         jPanelAlteracaoSenhaLayout.setVerticalGroup(
             jPanelAlteracaoSenhaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -93,15 +109,15 @@ public class GuiRecuperarSenha extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanelAlteracaoSenha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanelAlteracaoSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnOk)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,8 +134,18 @@ public class GuiRecuperarSenha extends javax.swing.JFrame {
 
         jPanelAlteracaoSenha.getAccessibleContext().setAccessibleName("Alteração de senha");
 
-        setBounds(0, 0, 405, 321);
+        getAccessibleContext().setAccessibleName("Recuperar Senha");
+
+        setBounds(0, 0, 408, 321);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnOkActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
